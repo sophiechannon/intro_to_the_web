@@ -1,5 +1,6 @@
 require 'sinatra/base'
 require 'sinatra/reloader'
+require './lib/player.rb'
 
 class Battle < Sinatra::Base
   configure :development do
@@ -8,27 +9,28 @@ class Battle < Sinatra::Base
 
   enable :sessions
 
-  get '/' do
-    erb(:index)
-  end
+  get "/" do 
+    erb :index
+  end 
 
-  post '/names' do
-    session[:player_one_name] = params[:player_one_name]
-    session[:player_two_name] = params[:player_two_name]
-    redirect "/play"
-  end
+  get "/play" do 
+    @player_1 = $player_1
+    @player_2 = $player_2
+    erb :play
+  end 
 
-  get '/play' do
-    @player_one_name = session[:player_one_name]
-    @player_two_name = session[:player_two_name]
-    erb(:play)
-  end
+  post "/names" do 
+    $player_1 = Player.new(params[:name1])
+    $player_2 = Player.new(params[:name2])
+    redirect '/play'
+  end 
 
-  get '/attack' do
-    @player_one_name = session[:player_one_name]
-    @player_two_name = session[:player_two_name]
-    erb(:attack)
-  end
+  get "/attack" do 
+    @player_1 = $player_1
+    @player_2 = $player_2
+    @player_1.attack(@player_2)
+    erb :attack
+  end 
 
   # # Start the server if this file is executed directly (do not change the line below)
   run! if app_file == $0
