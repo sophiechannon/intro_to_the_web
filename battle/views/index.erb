@@ -1,6 +1,15 @@
-<div>"Testing infrastructure working!"</div>
-<form action="/names" method="post">
-  <input type="text" name="player_one_name">
-  <input type="text" name="player_two_name">
-  <input type="submit" value="Submit">
-</form>
+<body style="font-family: monospace">
+  <h1 style="color: pink">Battle!</h1>
+  <h3 style="color: navy">Enter your names to get started</h3>
+  <form action="/names" method="post">
+    <label for="Player_one_name">
+      Player one name
+      <input type="text" name="player_one_name">
+    </label>
+    </label for="player_two_name">
+      Player two name
+      <input type="text" name="player_two_name">
+    </label>
+    <input type="submit" value="Submit">
+  </form>
+</body>
