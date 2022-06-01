@@ -15,4 +15,13 @@ describe Game do
     allow(player_1).to receive(:points).and_return 90
     game.attack(player_1)
   end
+
+  it "ininitally has player1 as active player" do
+    expect(game.active_player).to eq player_1
+  end
+
+  it "switches active player to player2" do
+    game.switch_turn
+    expect(game.active_player).to eq player_2
+  end
 end
