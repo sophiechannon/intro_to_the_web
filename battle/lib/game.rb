@@ -15,14 +15,15 @@ class Game
   end
 
   def attack(player)
-    player.receive_damage
+    player = @active_player
+    opponent(@active_player).receive_damage
   end
 
   def switch_turn
-    new_player = nil
-    @players.each do |player| 
-      new_player = player if player != @active_player
-    end
-    @active_player = new_player
+    @active_player = opponent(@active_player)
+  end
+
+  def opponent(current)
+    @players.reject {|player| player == current}.first
   end
 end

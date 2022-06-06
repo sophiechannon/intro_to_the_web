@@ -1,6 +1,11 @@
-<%= @game.player_1.name %> vs <%= @game.player_2.name %></br>
-<%= @game.player_2.name %>: <%= @game.player_2.points %>HP</br>
+<% if @game.player_1.points == 0 || @game.player_2.points == 0 %>
+  <%= @game.active_player.name %> loses
+<% else %>
+  <%= @game.player_1.name %> vs <%= @game.player_2.name %></br>
+  <%= @game.player_1.name %>: <%= @game.player_1.points %>HP</br>
+  <%= @game.player_2.name %>: <%= @game.player_2.points %>HP</br>
 It's <%=@game.active_player.name%>'s turn
-<form action="/attack">
-  <input type="submit" value="Attack">
-</form>
+  <form action="/attack">
+    <input type="submit" value="Attack">
+  </form>
+<% end %>

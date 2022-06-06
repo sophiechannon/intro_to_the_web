@@ -1,5 +1,8 @@
-<p><%=@game.player_1.name%> has attacked <%=@game.player_2.name%>!</p></br>
-<p><%=@game.player_2.name%> has <%=@game.player_2.points%> points</p></br>
-<form action="/play">
-  <input type="submit" value="Next Round">
-</form>
+<%if @game.active_player == @game.player_1%>
+  <p><%=@game.player_1.name%> has attacked <%=@game.player_2.name%>!</p></br>
+<%else%>
+<p><%=@game.player_2.name%> has attacked <%=@game.player_1.name%>!</p></br>
+<%end%>
+  <form action="/switch_turn">
+    <input type="submit" value="Next Round">
+  </form> 

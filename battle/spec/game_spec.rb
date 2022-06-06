@@ -11,9 +11,9 @@ describe Game do
   end
 
   it "attacks a player" do 
-    expect(player_1).to receive(:receive_damage)
-    allow(player_1).to receive(:points).and_return 90
-    game.attack(player_1)
+    expect(player_2).to receive(:receive_damage)
+    allow(player_2).to receive(:points).and_return 90
+    game.attack(player_2)
   end
 
   it "ininitally has player1 as active player" do
@@ -24,4 +24,11 @@ describe Game do
     game.switch_turn
     expect(game.active_player).to eq player_2
   end
+
+  it "returns the opponent" do
+    expect(game.opponent(player_1)).to eq player_2
+    expect(game.opponent(player_2)).to eq player_1
+  end
+
+
 end
